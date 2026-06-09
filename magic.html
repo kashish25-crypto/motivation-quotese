@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+
+        }
+        body{
+            background:linear-gradient(135deg,#ff5f6d, #ffc371) ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.8s ease;
+        }
+        .quote-card{
+            background: rgba(255, 255,255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0, 0, 0.15);
+            width: 70%;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        .counter{
+           font-size: 22px;
+           margin-bottom: 15px;
+           text-transform: uppercase;
+           letter-spacing: 2px;
+           opacity: 0.8;
+           font-weight: 600;
+
+        }
+        #quote-text{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom:30px ;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+
+        }
+        .btn{
+            padding: 14px 28px;
+            background-color: white;
+            color: #333;
+            font-size: 16px;
+            font-weight:700 ;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0, 0,0.1);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    .btn:hover{
+       transform: translateY(-3px);
+       box-shadow: 0 8px 20px rgba(0,0,0, 0.2);
+       background-color:#f8f9fa ;
+    }
+    .btn:active{
+         transform: translateY(-1px);
+
+    }
+
+    @media(max-width: 400px){
+        .quote-card{
+            padding: 30px 20px;
+        }
+
+        #quote-text{
+            font-size: 20px;
+        }
+        .btn{
+            padding:12px 24px;
+            font-size: 14px;
+        }
+    }
+   </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Quote & Background Changer</title>
+</head>
+<body>
+    <div class="quote-card">
+        <div class="counter">Step:<span id="step-num">1</span>/10</div>
+        <p id="quote-text">Believe and achieve. Your journey starts now!</p>
+        <button class="btn" onclick="changeState()">Transform ✨</button>
+    </div>
+    <script>
+        let quotes = [
+            
+            "Believe and achieve. Your journey starts now!",
+            "Stay positive, work hard, and make it happen.",
+            "Dream big. Pray bigger. Do your best.",
+            "Stay curious. Every day is a chance to learn.",
+            "Take risks. If you win, you're happy. If you lose, you're wise.",
+            "Find balance in everything you do.",
+            "Work hard in silence, let your success make the noise.",
+            "Keep going. Difficult roads often lead to beautiful destinations.",
+            "Celebrate every win, no matter how small.",
+            "The journey is the reward. Enjoy every moment!"
+        ];
+
+       let gradients = [
+         "linear-gradient(135deg, #ff5f6d, #ffc371)",
+         "linear-gradient(135deg, #11998e, #38ef7d)",
+         "linear-gradient(135deg,#00c6ff, #0072ff)",
+         "linear-gradient(135deg, #654ea3, #eaafc8)",
+          "linear-gradient(135deg, #f12711, #f5af19)",
+           "linear-gradient(135deg, #4ea1d3, #467196)",
+            "linear-gradient(135deg, #ff416c, #ff4b2b)",
+            "linear-gradient(135deg, #1f4068, #162447)",
+            "linear-gradient(135deg, #8e2de2, #4a00e0)",
+            "linear-gradient(135deg, #f9d423, #ff4e50)"
+       ];
+
+
+       let currentIndex = 0;
+
+       let quoteText = document.getElementById("quote-text");
+       let stepNum = document.getElementById("step-num");
+        
+
+       function changeState(){
+        currentIndex = (currentIndex + 1) % 10;
+
+        quoteText.style.opacity = "0";
+        quoteText.style.transform = "scale(0.95)";
+
+        document.body.style.background = gradients[currentIndex];
+
+       
+       setTimeout(() =>{
+        quoteText.innerText = quotes[currentIndex];
+        stepNum.innerText = currentIndex + 1;
+
+        quoteText.style.opacity = "1"
+        quoteText.style.transform = "scale(1)"
+       },300);
+    }
+    </script>
+
+</body>
+</html>
